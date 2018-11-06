@@ -11,7 +11,7 @@ let TIMEOUT = process.env.QUNIT_TIMEOUT || 2000;
 run(URI, TIMEOUT);
 
 async function run(uri, timeout) {
-	normalize(uri);
+	uri = normalize(uri);
 	console.error("loading test suite at", uri);
 
 	let browser = await puppeteer.launch();
