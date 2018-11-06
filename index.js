@@ -14,8 +14,7 @@ async function run(uri, timeout) {
 	normalize(uri);
 	console.error("loading test suite at", uri);
 
-	let args = ["--allow-file-access-from-files"]; // TODO: optional
-	let browser = await puppeteer.launch({ args });
+	let browser = await puppeteer.launch();
 
 	let page = await browser.newPage();
 	page.setDefaultNavigationTimeout(timeout);
