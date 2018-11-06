@@ -49,8 +49,8 @@ async function run(uri, timeout) {
 }
 
 function report(success, { total, failed, passed, runtime }) {
-	let sym = success ? "✓" : "✗";
-	console.error(`${sym} passed ${passed} / ${total} (${runtime} ms)`);
+	let prefix = success ? `✓ passed ${passed}` : `✗ failed ${failed}`;
+	console.error(`${prefix} / ${total} (${runtime} ms)`);
 }
 
 function hijackQUnit(report) {

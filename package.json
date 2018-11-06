@@ -1,6 +1,6 @@
 {
 	"name": "qunit-puppeteer-reporter",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"description": " headless browser testing for QUnit test suites",
 	"author": "FND",
 	"license": "Apache-2.0",
