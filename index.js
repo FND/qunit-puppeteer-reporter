@@ -11,13 +11,7 @@ let TIMEOUT = process.env.QUNIT_TIMEOUT || 2000;
 run(URI, TIMEOUT);
 
 async function run(uri, timeout) {
-	// normalize file paths
-	if(uri.startsWith("/")) {
-		uri += "file://";
-	} else if(/^\.?\.\//.test(uri)) { // relative, i.e. starts with `./` or `../`
-		let path = require("path");
-		uri = path.resolve(process.cwd(), uri);
-	}
+	normalize(uri);
 	console.error("loading test suite at", uri);
 
 	let args = ["--allow-file-access-from-files"]; // TODO: optional
@@ -42,7 +36,11 @@ async function run(uri, timeout) {
 	}, timeout);
 
 	// run test suite
-	await page.goto(uri, { waitUntil: "networkidle0" });
+	try {
+		await page.goto(uri, { waitUntil: "networkidle0" });
+	} catch(err) {
+		abort(`${err}`);
+	}
 	clearTimeout(timer);
 	terminate(browser, success ? 0 : 1);
 }
@@ -79,4 +77,17 @@ function terminate(browser, status = 0) {
 function abort(message, status = 1) {
 	console.error(message);
 	process.exit(status);
+}
+
+function normalize(uri) {
+	if(/^\.?\.\//.test(uri)) { // relative, i.e. starts with `./` or `../`
+		let path = require("path");
+		uri = path.resolve(process.cwd(), uri);
+	}
+
+	if(uri.startsWith("/")) {
+		return `file://${uri}`;
+	}
+
+	return uri;
 }
