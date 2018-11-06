@@ -14,7 +14,11 @@ async function run(uri, timeout) {
 	uri = normalize(uri);
 	console.error("loading test suite at", uri);
 
-	let browser = await puppeteer.launch();
+	if(uri.startsWith("file://")) {
+		let args = ["--allow-file-access-from-files"];
+		var options = { args }; // eslint-disable-line no-var
+	}
+	let browser = await puppeteer.launch(options);
 
 	let page = await browser.newPage();
 	page.setDefaultNavigationTimeout(timeout);
