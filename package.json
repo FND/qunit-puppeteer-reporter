@@ -1,6 +1,6 @@
 {
 	"name": "qunit-puppeteer-reporter",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"description": " headless browser testing for QUnit test suites",
 	"author": "FND",
 	"license": "Apache-2.0",
@@ -14,7 +14,7 @@
 	},
 	"main": "index.js",
 	"bin": {
-		"qunit-puppeteer-reporter": "index.js"
+		"qunit-reporter": "index.js"
 	},
 	"scripts": {
 		"test": "eslint --cache *.js && echo ✓"

@@ -4,7 +4,7 @@ qunit-puppeteer-reporter
 headless browser testing for [QUnit](https://qunitjs.com) test suites, using
 [Puppeteer](https://pptr.dev) to report results via the command line
 
-    $ qunit-puppeteer-reporter http://localhost:8000/test/
+    $ qunit-reporter http://localhost:8000/test/
     loading test suite at http://localhost:8000/test/
     ✓ passed 18 / 18 (106 ms)
 
@@ -21,7 +21,7 @@ Getting Started
 Due to its size, the Puppeteer package is expected to be installed separately so
 it can be used across multiple projects.
 
-    $ npx qunit-puppeteer-reporter /path/to/tests.html
+    $ npx qunit-reporter /path/to/tests.html
 
 Both local file paths and URLs are supported.
 
