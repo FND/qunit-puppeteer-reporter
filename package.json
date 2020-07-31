@@ -1,9 +1,15 @@
 {
 	"name": "qunit-puppeteer-reporter",
-	"version": "2.0.3",
+	"version": "2.0.4",
 	"description": " headless browser testing for QUnit test suites",
 	"author": "FND",
 	"license": "Apache-2.0",
+	"keywords": [
+		"qunit",
+		"qunit-plugin",
+		"qunit-reporter",
+		"puppeteer"
+	],
 	"homepage": "https://github.com/FND/qunit-puppeteer-reporter",
 	"repository": {
 		"type": "git",
@@ -24,7 +30,7 @@
 		"puppeteer": "^1.10.0"
 	},
 	"devDependencies": {
-		"eslint-config-fnd": "^1.6.0",
-		"release-util-fnd": "^1.1.1"
+		"eslint-config-fnd": "^1.8.0",
+		"release-util-fnd": "^2.0.1"
 	}
 }
