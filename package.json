@@ -4,6 +4,12 @@
 	"description": " headless browser testing for QUnit test suites",
 	"author": "FND",
 	"license": "Apache-2.0",
+	"keywords": [
+		"qunit",
+		"qunit-plugin",
+		"qunit-reporter",
+		"puppeteer"
+	],
 	"homepage": "https://github.com/FND/qunit-puppeteer-reporter",
 	"repository": {
 		"type": "git",
