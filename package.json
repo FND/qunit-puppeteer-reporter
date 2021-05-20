@@ -27,7 +27,9 @@
 	},
 	"dependencies": {},
 	"peerDependencies": {
-		"puppeteer": "^1.10.0"
+		"puppeteer": "^1.10.0",
+		"puppeteer-to-istanbul": "^1.4.0",
+		"nyc": "^15.1.0"
 	},
 	"devDependencies": {
 		"eslint-config-fnd": "^1.8.0",

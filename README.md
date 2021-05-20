@@ -4,12 +4,13 @@ qunit-puppeteer-reporter
 headless browser testing for [QUnit](https://qunitjs.com) test suites, using
 [Puppeteer](https://pptr.dev) to report results via the command line
 
-    $ qunit-reporter http://localhost:8000/test/
+    $ qunit-reporter http://localhost:8000/test/ [cov]
     loading test suite at http://localhost:8000/test/
     ✓ passed 18 / 18 (106 ms)
 
 Note that this intentionally focuses only on reporting success/failure; for
 details and debugging you'll want to open the test suite in a regular browser.
+You can also and an optional `cov` argument to produce js coverage information.
 
 
 Getting Started
@@ -17,11 +18,12 @@ Getting Started
 
     $ npm install qunit-puppeteer-reporter
     $ npm install -g puppeteer
+    $ npm install -g nyc puppeteer-to-istanbul (only needed if want coverage)
 
 Due to its size, the Puppeteer package is expected to be installed separately so
 it can be used across multiple projects.
 
-    $ npx qunit-reporter /path/to/tests.html
+    $ npx qunit-reporter /path/to/tests.html [cov]
 
 Both local file paths and URLs are supported.
 
