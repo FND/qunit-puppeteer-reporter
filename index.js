@@ -6,11 +6,20 @@ try {
 }
 
 let URI = process.argv[2] || abort("error: URI not specified");
+let COVERAGE = process.argv.length >= 3 ? process.argv[3] === "cov" : false;
 let TIMEOUT = process.env.QUNIT_TIMEOUT || 2000;
 
-run(URI, TIMEOUT);
+if(COVERAGE) {
+	try {
+		var pti = require("puppeteer-to-istanbul"); // eslint-disable-line no-var
+	} catch(err) {
+		abort("error: Puppeteer-to-istanbul not found");
+	}
+}
 
-async function run(uri, timeout) {
+run(URI, TIMEOUT, COVERAGE);
+
+async function run(uri, timeout, coverage) {
 	uri = normalize(uri);
 	console.error("loading test suite at", uri);
 
@@ -38,6 +47,7 @@ async function run(uri, timeout) {
 		terminate(browser, 1);
 	}, timeout);
 
+	await startCoverage(page, coverage);
 	// run test suite
 	try {
 		await page.goto(uri, { waitUntil: "networkidle0" });
@@ -45,7 +55,25 @@ async function run(uri, timeout) {
 		abort(`${err}`);
 	}
 	clearTimeout(timer);
+	await stopCoverage(page, coverage);
 	terminate(browser, success ? 0 : 1);
+}
+
+async function startCoverage(page, coverage) {
+	if(!coverage) {
+		return;
+	}
+	await page.coverage.startJSCoverage();
+}
+
+async function stopCoverage(page, coverage) {
+	if(!coverage) {
+		return;
+	}
+	const jsCoverage = await page.coverage.stopJSCoverage();
+	pti.write(jsCoverage, {
+		includeHostname: false, storagePath: "./.nyc_output"
+	});
 }
 
 function report(success, { total, failed, passed, runtime }) {
